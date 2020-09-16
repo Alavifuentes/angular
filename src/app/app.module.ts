@@ -10,6 +10,8 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { LoginRegisterComponent } from './layout/login-register/login-register.component';
 import {TabsModule} from 'ngx-bootstrap/tabs';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {RequestService} from './services/request.service';
+import {HttpClientModule} from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,8 +27,9 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     TabsModule.forRoot(),
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [RequestService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
