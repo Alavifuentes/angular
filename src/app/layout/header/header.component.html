@@ -5,8 +5,8 @@
     <div class="container">
 
       <!-- Brand -->
-      <a class="navbar-brand waves-effect" href="#" target="_blank">
-        <strong class="blue-text">Angular</strong>
+      <a class="navbar-brand waves-effect" [routerLink]="['/']" >
+        <strong class="blue-text">Curso</strong>
       </a>
 
       <!-- Links -->
@@ -15,13 +15,9 @@
         <!-- Left -->
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link waves-effect" href="#">Home
+            <a class="nav-link waves-effect" [routerLink]="['/admin']">Admin
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link waves-effect" href="#" target="_blank">About</a>
-          </li>
-
         </ul>
 
         <!-- Right -->

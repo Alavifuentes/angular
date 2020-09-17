@@ -12,13 +12,15 @@ import {TabsModule} from 'ngx-bootstrap/tabs';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {RequestService} from './services/request.service';
 import {HttpClientModule} from '@angular/common/http';
+import { NotFoundComponent } from './layout/not-found/not-found.component';
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     FooterComponent,
     NavComponent,
-    LoginRegisterComponent
+    LoginRegisterComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
