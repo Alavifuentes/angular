@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {BsModalRef, BsModalService} from 'ngx-bootstrap/modal';
 import {FormCategoriaComponent} from '../form-categoria/form-categoria.component';
+import {Categoria} from '../../models/categoria';
+import {RequestService} from '../../services/request.service';
 
 @Component({
   selector: 'app-categorias',
@@ -9,11 +11,30 @@ import {FormCategoriaComponent} from '../form-categoria/form-categoria.component
 })
 export class CategoriasComponent implements OnInit {
   modalRef: BsModalRef;
-  constructor(private modalService: BsModalService) { }
+  public categorias: Array<Categoria> = [];
+  constructor(private modalService: BsModalService,
+              private requestServicio: RequestService) { }
 
   ngOnInit(): void {
+    this.requestServicio.index('categorias').subscribe( res => {
+      this.categorias = res.body.data;
+      console.log('res ', res);
+    })
   }
   createCategory(): void {
     this.modalRef = this.modalService.show(FormCategoriaComponent);
+  }
+  remove(item: Categoria, index: number): void {
+    console.log(item);
+    if (confirm(' Esta seguro de eliminar ?')) {
+      this.requestServicio.delete('categorias/' + item.id).subscribe( res => {
+        console.log( ' item ', res);
+        this.categorias.splice(index, 1);
+      });
+    }
+  }
+  edit(item: Categoria, index: number): void{
+    this.modalRef = this.modalService.show(FormCategoriaComponent,
+      {initialState: {data: item}, ignoreBackdropClick: true});
   }
 }

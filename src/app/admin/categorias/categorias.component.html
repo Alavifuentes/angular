@@ -8,6 +8,27 @@
     </div>
   </div>
   <div class="row">
-    lista
+    <table class="table">
+      <thead class="thead-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Descripción</th>
+        <th scope="col">Acciones</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let categoria of categorias; index as i">
+        <th scope="row">{{i+1}}</th>
+        <td>{{categoria.nombre}}</td>
+        <td>{{categoria.descripcion}}</td>
+        <td>
+          <button class="btn btn-danger btn-sm" (click)="remove(categoria, i)">Elininar</button>
+          <button class="btn btn-success btn-sm" (click)="edit(categoria, i)">Editar</button>
+        </td>
+      </tr>
+
+      </tbody>
+    </table>
   </div>
 </div>

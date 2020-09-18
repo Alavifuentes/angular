@@ -7,13 +7,16 @@ import { ProductosComponent } from './productos/productos.component';
 import { CategoriasComponent } from './categorias/categorias.component';
 import { FormProductoComponent } from './form-producto/form-producto.component';
 import { FormCategoriaComponent } from './form-categoria/form-categoria.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 
 @NgModule({
   declarations: [HomeAdminComponent, ProductosComponent, CategoriasComponent, FormProductoComponent, FormCategoriaComponent],
   imports: [
     CommonModule,
-    AdminRoutingModule
+    AdminRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
   ]
 })
 export class AdminModule { }
