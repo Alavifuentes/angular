@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup} from '@angular/forms';
 import {Categoria, CategoriaValidate} from '../../models/categoria';
 import {BsModalRef, BsModalService} from 'ngx-bootstrap/modal';
 import {RequestService} from '../../services/request.service';
+import {EventService} from '../service/event.service';
 
 @Component({
   selector: 'app-form-categoria',
@@ -15,6 +16,7 @@ categoria: Categoria;
   constructor(public formBuilder: FormBuilder,
               public  bsModalRef: BsModalRef,
               public bsService: BsModalService,
+              public eventService: EventService,
               private requestService: RequestService) {
     if ( this.bsService.config.initialState['data']) {
       this.categoria = this.bsService.config.initialState['data'];
@@ -45,7 +47,8 @@ if ( this.categoria) {
 } else {
   if (this.modelForm.valid) {
     this.requestService.create('categorias', this.modelForm.getRawValue()).subscribe( res => {
-      console.log( ' res ', res.body);
+      console.log( ' resform ', res.body.data);
+      this.eventService.setObject(res.body.data);
       this.close();
     });
   }

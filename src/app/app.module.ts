@@ -13,6 +13,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {RequestService} from './services/request.service';
 import {HttpClientModule} from '@angular/common/http';
 import { NotFoundComponent } from './layout/not-found/not-found.component';
+import {EventService} from './admin/service/event.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,7 +32,7 @@ import { NotFoundComponent } from './layout/not-found/not-found.component';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [RequestService],
+  providers: [RequestService, EventService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

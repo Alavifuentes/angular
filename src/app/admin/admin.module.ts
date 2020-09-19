@@ -8,7 +8,11 @@ import { CategoriasComponent } from './categorias/categorias.component';
 import { FormProductoComponent } from './form-producto/form-producto.component';
 import { FormCategoriaComponent } from './form-categoria/form-categoria.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-
+import {NgxSelectModule, INgxSelectOptions} from 'ngx-select-ex';
+const CustomSelectOptions: INgxSelectOptions = { // Check the interface for more options
+  optionValueField: 'id',
+  optionTextField: 'nombre'
+};
 
 @NgModule({
   declarations: [HomeAdminComponent, ProductosComponent, CategoriasComponent, FormProductoComponent, FormCategoriaComponent],
@@ -17,6 +21,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     AdminRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    NgxSelectModule.forRoot(CustomSelectOptions),
   ]
 })
 export class AdminModule { }
