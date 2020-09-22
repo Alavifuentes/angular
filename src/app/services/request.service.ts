@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpResponse} from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpResponse} from '@angular/common/http';
 import {environment} from '../../environments/environment';
 import {Observable} from 'rxjs';
 import {ApiResponse} from './api-response';
@@ -32,5 +32,9 @@ private urlBase: string;
   }
   put(path: string, boddy: any): Observable<HttpResponse<any>> {
     return this.http.put(this.getBaseUrl(path), boddy, { observe: 'response'});
+  }
+
+  logout(path: string, token: string): Observable<any> {
+    return this.http.post(this.getBaseUrl(path), null, { observe: 'response'});
   }
 }

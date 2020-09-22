@@ -11,9 +11,13 @@ import { LoginRegisterComponent } from './layout/login-register/login-register.c
 import {TabsModule} from 'ngx-bootstrap/tabs';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {RequestService} from './services/request.service';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { NotFoundComponent } from './layout/not-found/not-found.component';
 import {EventService} from './admin/service/event.service';
+import {NgxWebstorageModule} from 'ngx-webstorage';
+import {AuthService} from './services/auth.service';
+import {TokenInterceptorService} from './services/token-interceptor.service';
+import {ErrorInterceptor} from './services/error-interceptor';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,9 +34,16 @@ import {EventService} from './admin/service/event.service';
     TabsModule.forRoot(),
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxWebstorageModule.forRoot(),
   ],
-  providers: [RequestService, EventService],
+  providers: [RequestService, EventService, AuthService, {
+    provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true
+  },
+    {
+    provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true
+  }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

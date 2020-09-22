@@ -14,7 +14,7 @@
 
         <!-- Left -->
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
+          <li class="nav-item active" *ngIf="currentUser">
             <a class="nav-link waves-effect" [routerLink]="['/admin']">Admin
             </a>
           </li>
@@ -22,9 +22,14 @@
 
         <!-- Right -->
         <ul class="navbar-nav nav-flex-icons">
-          <li class="nav-item">
-            <a (click)="action()" class="nav-link waves-effect" target="_blank">
+          <li class="nav-item" *ngIf="!currentUser">
+            <a (click)="action()" class="nav-link waves-effect">
               <i class="fab"> Login</i>
+            </a>
+          </li>
+          <li class="nav-item" *ngIf="currentUser">
+            <a (click)="logout()" class="nav-link waves-effect">
+              Salir
             </a>
           </li>
         </ul>

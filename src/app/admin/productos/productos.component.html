@@ -22,7 +22,7 @@
       <tr *ngFor="let producto of productos; index as i">
         <th scope="row">{{i+1}}</th>
         <td>{{producto.nombre}}</td>
-        <td>{{producto.categoria_id}}</td>
+        <td>{{producto.categoria.nombre}}</td>
         <td>{{producto.descripcion}}</td>
         <td>
           <button class="btn btn-danger btn-sm" (click)="remove(producto, i)">Elininar</button>

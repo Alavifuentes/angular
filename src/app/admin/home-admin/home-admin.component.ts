@@ -1,6 +1,8 @@
 import {Component, ComponentFactoryResolver, OnInit, ViewChild, ViewContainerRef} from '@angular/core';
 import {ProductosComponent} from '../productos/productos.component';
 import {CategoriasComponent} from '../categorias/categorias.component';
+import {AuthService} from '../../services/auth.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-home-admin',
@@ -9,11 +11,17 @@ import {CategoriasComponent} from '../categorias/categorias.component';
 })
 export class HomeAdminComponent implements OnInit {
 @ViewChild('container', {static: true, read: ViewContainerRef}) entry: ViewContainerRef;
-  constructor(private resolver: ComponentFactoryResolver) {
+  constructor(private resolver: ComponentFactoryResolver,
+              private autService: AuthService,
+              private route: Router) {
   }
 
   ngOnInit(): void {
     this.loadProductos();
+    console.log(' insession ', this.autService.getInSession());
+    if(!this.autService.getInSession() ) {
+      this.route.navigate(['/']);
+    }
   }
   changeComponente(compoente: string): void {
     console.log(' componente ', compoente);

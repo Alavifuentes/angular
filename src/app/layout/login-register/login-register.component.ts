@@ -4,6 +4,7 @@ import {FormBuilder, FormGroup} from '@angular/forms';
 import {RequestService} from '../../services/request.service';
 import {error} from 'selenium-webdriver';
 import {UserValidate} from '../../models/user';
+import {AuthService} from '../../services/auth.service';
 
 @Component({
   selector: 'app-login-register',
@@ -16,7 +17,8 @@ export class LoginRegisterComponent implements OnInit {
   loginMessage: string;
   constructor(public bsModalRef: BsModalRef,
               public formBuilder: FormBuilder,
-              public requestService: RequestService ) {
+              public requestService: RequestService,
+              public authService: AuthService) {
     this.loginMessage = '';
     this.buildLoginForm();
     this.buildRegisterForm();
@@ -43,9 +45,11 @@ export class LoginRegisterComponent implements OnInit {
   }
   login(): void {
     this.requestService.login('login', this.loginForm.getRawValue()).subscribe(res => {
-      console.log(' login', res);
+      console.log(' login', res.body.data);
       this.loginMessage = '';
       this.close();
+      this.authService.setCurrentUserSession(res.body.data);
+
     }, error => {
       this.loginMessage =  error.error.error;
       console.log(' error', error.error.error);

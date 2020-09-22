@@ -33,7 +33,7 @@ categorias: Array<Categoria> = [];
       precio: [ null, ProductValidate.rules.precio],
       descripcion: [null, ProductValidate.rules.descripcion],
       categoria_id: [null, ProductValidate.rules.categoria_id],
-      user_id: [6, ProductValidate.rules.user_id]
+      user_id: [7, ProductValidate.rules.user_id]
     });
   }
   submint(): void{
