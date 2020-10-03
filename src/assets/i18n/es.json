@@ -1,0 +1,16 @@
+{
+  "HOME": {
+    "TITLE": "Bienvenido"
+  },
+  "categoria": {
+    "nombre": {
+      "required": "El nombre es requerido",
+      "maxlength": "Solo se permiten 10 caracteres"
+    }
+  },
+  "producto": {
+    "nombre": {
+      "required": "El nombre es requerido"
+    }
+  }
+}

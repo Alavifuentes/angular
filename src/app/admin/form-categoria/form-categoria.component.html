@@ -9,6 +9,7 @@
                class="form-control form-control-sm"
                id="nombre"
                placeholder="Nombre de la categoria">
+        <app-messages [model]="'categoria'" [campo]="'nombre'" [control]="modelForm.get('nombre')"  ></app-messages>
       </div>
       <div class="form-group">
         <label for="nombre"> Descripción</label>

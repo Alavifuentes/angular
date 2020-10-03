@@ -8,6 +8,8 @@
              class="form-control form-control-sm"
              id="nombre"
              placeholder="Nombre de la categoria">
+      <app-messages [model]="'producto'" [campo]="'nombre'" [control]="modelForm.get('nombre')"  ></app-messages>
+
     </div>
     <div class="form-group">
       <label for="precio"> Precio</label>

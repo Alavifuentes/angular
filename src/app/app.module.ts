@@ -11,13 +11,17 @@ import { LoginRegisterComponent } from './layout/login-register/login-register.c
 import {TabsModule} from 'ngx-bootstrap/tabs';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {RequestService} from './services/request.service';
-import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from '@angular/common/http';
 import { NotFoundComponent } from './layout/not-found/not-found.component';
 import {EventService} from './admin/service/event.service';
 import {NgxWebstorageModule} from 'ngx-webstorage';
 import {AuthService} from './services/auth.service';
 import {TokenInterceptorService} from './services/token-interceptor.service';
 import {ErrorInterceptor} from './services/error-interceptor';
+import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+export const HttpLoaderFactory = (http: HttpClient) =>
+  new TranslateHttpLoader(http, './assets/i18n/', '.json');
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,6 +40,13 @@ import {ErrorInterceptor} from './services/error-interceptor';
     ReactiveFormsModule,
     HttpClientModule,
     NgxWebstorageModule.forRoot(),
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    })
   ],
   providers: [RequestService, EventService, AuthService, {
     provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true

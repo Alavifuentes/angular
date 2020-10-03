@@ -7,7 +7,7 @@ export interface Categoria {
 }
 export class CategoriaValidate {
   public  static rules = {
-['nombre']: [Validators.required],
+['nombre']: [Validators.required, Validators.maxLength(10)],
 ['descripcion']: [Validators.maxLength(3000)]
   };
 }

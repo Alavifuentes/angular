@@ -9,18 +9,21 @@ import { FormProductoComponent } from './form-producto/form-producto.component';
 import { FormCategoriaComponent } from './form-categoria/form-categoria.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {NgxSelectModule, INgxSelectOptions} from 'ngx-select-ex';
+import { MessagesComponent } from './messages/messages.component';
+import {TranslateModule} from '@ngx-translate/core';
 const CustomSelectOptions: INgxSelectOptions = { // Check the interface for more options
   optionValueField: 'id',
   optionTextField: 'nombre'
 };
 
 @NgModule({
-  declarations: [HomeAdminComponent, ProductosComponent, CategoriasComponent, FormProductoComponent, FormCategoriaComponent],
+  declarations: [HomeAdminComponent, ProductosComponent, CategoriasComponent, FormProductoComponent, FormCategoriaComponent, MessagesComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    TranslateModule,
     NgxSelectModule.forRoot(CustomSelectOptions),
   ]
 })
